@@ -19,7 +19,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Messi Magic Cup")
 
 #Load background
-background_image = import_img("img/fondoestadio.jpg", WIDTH, HEIGHT)
+background_image = import_img("Messi´s magic cup/img/fondoestadio.jpg", WIDTH, HEIGHT)
 
 background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
 

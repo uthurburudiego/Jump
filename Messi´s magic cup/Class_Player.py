@@ -1,5 +1,6 @@
 import pygame
 from utilities import player_movements
+from Class_Platformer import Platform
 
 WHITE = (255,255,255)
 GRAVITY = 1
@@ -18,7 +19,7 @@ class Player():
         self.rect.center = (x, y)
         self.velocity_y = 0
 
-    def move(self):
+    def move(self, platform_group: pygame.sprite.Group):
 
         delta_x = 0
         delta_y = 0
@@ -46,6 +47,17 @@ class Player():
         if self.rect.bottom + delta_y-5 > self.screen.get_height():
             delta_y = 0
             self.velocity_y = -20
+        
+        #Check collision with platforms 
+            for platform in  platform_group:
+                if platform.rect.colliderect(self.rect.x, self.rect.y + delta_y, self.width, self.height):
+                    if self.rect.bottom < platform.rect.centery:
+                        if self.velocity_y > 0: 
+                            self.rect.bottom = platform.rect.top
+                            delta_y = 0
+                            self.velocity_y = -20
+
+
 
 
         #Update rectangle position 
